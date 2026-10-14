@@ -31,18 +31,16 @@ def split_data(x, y, tr_fraction=0.5):
     Split the data x, y into two random subsets
 
     """
-    pass
+    idx = np.array(range(x.shape[0]))
+    np.random.shuffle(idx)
+    ntr = int(tr_fraction * x.shape[0])
 
-def load_mnist(csv_filename):
-    """Load the MNIST dataset.
-    input:
-        csv_filename: string with the path to the dataset to load
-    output:
-        X: set of images (numpy array)
-        y: labels (numpy array)
-    """
-    data = read_csv(csv_filename)
-    z = np.array(data)
-    y = z[:, 0]
-    X = z[:, 1:]
-    return X, y
+    xtr = x[idx[0:ntr], :]
+    ytr = y[idx[0:ntr]]
+
+    xts = x[idx[ntr:], :]
+    yts = y[idx[ntr:]]
+
+    return xtr, ytr, xts, yts
+
+    
