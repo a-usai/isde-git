@@ -39,7 +39,7 @@ class NMC(object):
         n_features = xtr.shape[1]
         centroids = np.zeros(shape=(n_classes, n_features))
         for i in range(n_classes):
-            self._centroids[i] = np.mean(xtr[ytr == i], axis=0)
+            self._centroids[i] = np.mean(xtr[ytr == i,:], axis=0)
         
 
     def predict(self, xts):
